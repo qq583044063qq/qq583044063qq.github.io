@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>音频数据可视化 | Rua</title>
+        <meta name="author" content="Rua">
+        <meta name="description" content="Welcome My Home">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://hatsune-miku-yyy-blog-static.oss-cn-chengdu.aliyuncs.com/MyBlogAssete/blogAvatar.gif">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.1.1/js/all.min.js"></script>
+        
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 5.4.2"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Rua</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a target="_blank" rel="noopener" href="https://mc.ayatsukinora.org.cn:38454/">
+            <i class="fa-solid fa-server fa-fw"></i>
+            <span>&ensp;MC_Server_Overview</span>
+        </a>
+        
+        <a target="_blank" rel="noopener" href="https://www.curseforge.com/minecraft/modpacks">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;MC_Mod_Download</span>
+        </a>
+        
+        <a target="_blank" rel="noopener" href="https://www.mcmod.cn/">
+            <i class="fa-brands fa-wikipedia-w fa-fw"></i>
+            <span>&ensp;MC_Mod_Pedia</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;Rua</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a target="_blank" rel="noopener" href="https://mc.ayatsukinora.org.cn:38454/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-server fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">MC_Server_Overview</div>
+                </div>
+            </a>
+            
+            <a target="_blank" rel="noopener" href="https://www.curseforge.com/minecraft/modpacks">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">MC_Mod_Download</div>
+                </div>
+            </a>
+            
+            <a target="_blank" rel="noopener" href="https://www.mcmod.cn/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-brands fa-wikipedia-w fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">MC_Mod_Pedia</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>音频数据可视化 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/8/30
+        </span>
+        
+        
+    </div>
+    <div class="content" v-pre>
+        <h1 id="简单的音频可视化实现"><a href="#简单的音频可视化实现" class="headerlink" title="简单的音频可视化实现"></a>简单的音频可视化实现</h1><p>音乐播发器:  <a target="_blank" rel="noopener" href="https://aplayer.js.org/#/zh-Hans/">APlayer</a><br>利用 web 自带的AudioContext 里面的 Analyser 分析器 获取实时音频数据</p>
+<p><img src="https://hatsune-miku-yyy-blog-static.oss-cn-chengdu.aliyuncs.com/blhx1.jpg" alt="blhx"></p>
+<p><img src="https://hatsune-miku-yyy-blog-static.oss-cn-chengdu.aliyuncs.com/blhx2.jpg" alt="blhx"></p>
+<span id="more"></span>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><iframe
+width=100%
+height = 800
+framebirder=0
+src = "https://qq583044063qq.github.io/SampleWebPageCollection/AudioWavesuface.html"
+>
+</iframe>
+
+<h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><pre><code class="javascript">function renderFrame() &#123;
+    //每次绘制时查看当前选择的绘图类型
+    let currentType = selectTypeDom.options[selectTypeDom.selectedIndex].value;
+    renderFrameIsRunning = true;
+    // 每次绘制都记得要重新设置一下画布高宽
+    canvasElement.width = canvasContainer.clientWidth;
+    canvasElement.height = canvasContainer.clientHeight;
+    //每次绘制时清空画布
+    canvasCtx.clearRect(0,0, canvasElement.width, canvasElement.height);
+    switch(currentType)&#123;
+      case &quot;spectrum&quot;:&#123;
+         // 更新频率数据
+          // analyser.getByteFrequencyData(dataArray);
+          analyser.getByteFrequencyData(dataArray);
+          // console.log(dataArray);
+          // 计算一下每个柱子的宽度
+          let barWidth = canvasElement.width/bufferLength;
+          let HEIGHT = canvasElement.height;
+          //bufferLength表示柱形图中矩形的个数
+          for (let i = 0, x = 0; i &lt; bufferLength; i++) &#123;
+              // 根据频率映射一个矩形高度
+              // barHeight = dataArray[i];
+              // barHeight = (dataArray[i] + 140) * 2; // getFloatFrequencyData() 方法获取的单位为分贝 在数字音频数据中 这些值都是负值 这里加个140进行转换好绘制频谱
+              barHeight = dataArray[i] * 1.5;
+              // 根据每个矩形高度映射一个背景色 
+              // let r = barHeight + 25 * (i / bufferLength);
+              // let g = 250 * (i / bufferLength);
+              // let b = 100;
+              // 每个矩形的颜色为了更好的控制过渡这里使用hsl
+              // H取值最大225 根据高度比例来获取对应的颜色值
+              let h =225 - barHeight/HEIGHT * 225;
+              let s = &#39;100%&#39;;
+              let l = &#39;50%&#39;;
+              // 绘制一个矩形，并填充背景色
+              // canvasCtx.fillStyle = &quot;rgb(&quot; + r + &quot;,&quot; + g + &quot;,&quot; + b + &quot;)&quot;;
+              canvasCtx.fillStyle = &quot;hsl(&quot; + h + &quot;,&quot; + s + &quot;,&quot; + l + &quot;)&quot;;
+              canvasCtx.fillRect(x, HEIGHT  - barHeight, barWidth, barHeight);
+
+              x += barWidth + 1;
+          &#125;
+      &#125;
+      break;
+      case &quot;circle&quot;:&#123;
+        // 圆形的音频波形
+        // 设置线条颜色
+        let oW = canvasElement.width;
+        let oH = canvasElement.height;
+        let color1 = canvasCtx.createLinearGradient(oW/2, oH/2-10, oW/2, oH/2-150);
+        color1.addColorStop(0, &quot;#1E90FF&quot;);
+        color1.addColorStop(.25, &quot;#FF7F50&quot;);
+        color1.addColorStop(.5, &quot;#8A2BE2&quot;);
+        color1.addColorStop(.75, &quot;#4169E1&quot;);
+        color1.addColorStop(1, &quot;#00FFFF&quot;);
+        let color2 = canvasCtx.createLinearGradient(0,0,oW,oH);
+        color2.addColorStop(0,&quot;#1E90FF&quot;);
+        color2.addColorStop(.25,&quot;#FFD700&quot;);
+        color2.addColorStop(.5, &quot;#8A2BE2&quot;);
+        color2.addColorStop(.75, &quot;#4169E1&quot;);
+        color2.addColorStop(1, &quot;#FF0000&quot;);
+        let outPut= new Uint8Array(360);
+        let du = 2; //角度
+        let r = 200; //半径
+        let w = 2; //宽
+        analyser.getByteFrequencyData(outPut);
+        for(let i=0; i&lt;360;i++)
+        &#123;
+          let value = ((outPut[i]))/10;
+          canvasCtx.beginPath();
+          canvasCtx.lineWidth =w;
+          let Rv1 = (r - value);
+          let Rv2 = (r + value);
+          let currentRadius = Math.PI/180*(i*du);
+          canvasCtx.moveTo((Math.sin((i*du)/180*Math.PI)*Rv1 + oW/2), -Math.cos((i*du)/180*Math.PI)*Rv1 + oH/2);
+          canvasCtx.lineTo((Math.sin(currentRadius)*Rv2 + oW/2), - Math.cos(currentRadius)*Rv2+ oH/2);
+          canvasCtx.strokeStyle= color1; // 线条颜色
+          canvasCtx.stroke();
+        
+        &#125;
+        // 设置字体样式
+        canvasCtx.font = &quot;20px 华文楷体&quot;;
+        canvasCtx.fillStyle = color2;
+        canvasCtx.textAlign = &quot;center&quot;;
+        canvasCtx.textBaseline = &quot;middle&quot;;
+        // 绘制文字
+        canvasCtx.fillText(ap.list.audios[ap.list.index].name, oW/2, oH/2);
+      &#125;
+      break;
+      default:
+        break;
+    &#125;
+    if(!isPlay)&#123;
+      renderFrameIsRunning = false;
+      return;
+    &#125;
+    requestAnimationFrame(renderFrame);
+&#125;
+</code></pre>
+
+    </div>
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 20xx - 2024 Rua
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @Rua
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+
+    </body>
+</html>
